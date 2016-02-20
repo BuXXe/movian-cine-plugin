@@ -1,0 +1,14 @@
+{
+  "type": "ecmascript",
+  "id": "cine.to",
+  "file": "cine.js",
+  "category": "video",
+  "showtimeVersion": "4.3.167",
+  "version": "0.1",
+  "author": "BuXXe (@buxxe)",
+  "title": "cine.to",
+  "icon": "cine.png",
+  "synopsis": "Movian plugin to watch cine.to streams",
+  "description":"<p>cine.to Movian plugin allows the integration of cine.to streams into Movian. cine.to offers a broad variety of german / english movies. If you encounter problems, leave a note at the github. Visit at: https://github.com/BuXXe/movian-cine-plugin</p>",
+  "homepage":"https://github.com/BuXXe/movian-cine-plugin"
+}
