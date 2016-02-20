@@ -7,7 +7,7 @@ As this plugin was initially only meant for personal usage, bug fixes and additi
 # Functions so far:
 * Browse - Browse through movies (by genre)
 * Search - Lets you search for a specific movie
-* (due to the limited GUI capabilities of movian, the filters as implemented on the page (rating, year...) are omitted to keep in clean and easy)
+* (due to the limited GUI capabilities of movian, the filters as implemented on the page (rating, year...) are omitted to keep it clean and easy)
 
 # Current hoster-resolution info:
 * Streamcloud - resolver working / video working
