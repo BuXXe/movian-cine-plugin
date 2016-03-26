@@ -821,7 +821,7 @@
 	  // to come around this we use postdata string
 	  var BrowseResponse = showtime.httpReq("http://cine.to/request/search",{
 		  compression: true,
-		  noFollow:true,
+		  noFollow:false,
 		  method: "POST",
 		  postdata: "kind=all&term="+postterm+"&year%5B%5D=1913&year%5B%5D=2016&count=23&genre="+genre+"&rating=1&page="+currentpage,
 		  headers: {"Content-Type": "application/x-www-form-urlencoded"} 
