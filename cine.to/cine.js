@@ -694,15 +694,7 @@
 			  //compression: true,
 			  noFollow:true,
 			  headRequest:true,
-			  debug:true
 			});
-		
-     	showtime.trace(showtime.JSONEncode(BrowseResponse.headers));
-     	showtime.trace(showtime.JSONEncode(BrowseResponse.multiheaders));
-		
-		//showtime.trace(Object.keys(BrowseResponse["headers"]));
-		//showtime.trace(BrowseResponse.toString());
-		showtime.trace(showtime.JSONEncode(BrowseResponse["headers"]["Location"]));
 		 
 		var directlink = BrowseResponse["headers"]["Location"];
 
