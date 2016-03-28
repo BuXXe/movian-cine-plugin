@@ -126,7 +126,13 @@
   function resolveFlashxtv(StreamSiteVideoLink)
   {
 	  	var postdata;
-	  	
+	    
+	  	// Workaround to get the correct link if the file was uploaded to flashx.space instead of flash.tv
+	  	// if the file is on flashx.tv, this should give an undefined as we do not have any redirects
+	  	var spaceLink = showtime.httpReq(StreamSiteVideoLink, { noFollow:true,headRequest:true});
+	    if (spaceLink["headers"]["Location"] != null)
+	    	StreamSiteVideoLink = spaceLink["headers"]["Location"];
+	    
     	var getEmissionsResponse = showtime.httpGet(StreamSiteVideoLink);
     	var dom = html.parse(getEmissionsResponse.toString());
     	var res = [];
@@ -166,8 +172,8 @@
 	    var cdn = dom.root.getElementById('vplayer').getElementByTagName("img")[0].attributes.getNamedItem("src").value;
 	    cdn = /.*thumb\.(.*)\.fx.*/gi.exec(cdn)[1]    	    	   
 	    // TODO: perhaps allow other quality settings -> here we always take normal
-	    var luqhash = /normal\|luq4(.*?)\|/gi.exec(postresponse.toString())[1];
-	    var finallink = "http://play."+cdn+".fx.fastcontentdelivery.com/luq4"+luqhash+"/normal.mp4";
+	    var luqhash = /normal\|luq(.*?)\|/gi.exec(postresponse.toString())[1];
+	    var finallink = "http://play."+cdn+".fx.fastcontentdelivery.com/luq"+luqhash+"/normal.mp4";
     	
 	    return [StreamSiteVideoLink,finallink];
   }
@@ -684,15 +690,21 @@
 	  	// get the series title, season and episode number
 		// seasonlink is serie/seriesname/seasonnumber/episodename
 		page.metadata.title = hostername;
-     	 var BrowseResponse = showtime.httpReq("http://cine.to/out/"+episodeLink,{
-			  compression: true,
+     	 var BrowseResponse = showtime.httpReq("https://cine.to/out/"+episodeLink,{
+			  //compression: true,
 			  noFollow:true,
-			  headRequest:true
+			  headRequest:true,
+			  debug:true
 			});
-		 
+		
+     	showtime.trace(showtime.JSONEncode(BrowseResponse.headers));
+     	showtime.trace(showtime.JSONEncode(BrowseResponse.multiheaders));
+		
+		//showtime.trace(Object.keys(BrowseResponse["headers"]));
+		//showtime.trace(BrowseResponse.toString());
 		showtime.trace(showtime.JSONEncode(BrowseResponse["headers"]["Location"]));
 		 
-		var directlink =BrowseResponse["headers"]["Location"];
+		var directlink = BrowseResponse["headers"]["Location"];
 
 		var vidlink = resolveHoster(directlink, hostername)
 		if(vidlink == null)
@@ -711,7 +723,7 @@
 
 		 var BrowseResponse = showtime.httpReq("http://cine.to/request/links",{
 			  compression: true,
-			  noFollow:true,
+			  noFollow:false,
 			  method: "POST" ,
 			  postdata: "ID="+ID+"&lang="+langtag,
 			  headers: {"Content-Type": "application/x-www-form-urlencoded"} 
@@ -738,7 +750,7 @@
 
 	  var BrowseResponse = showtime.httpReq("http://cine.to/request/links",{
 		  compression: true,
-		  noFollow:true,
+		  noFollow:false,
 		  method: "POST" ,
 		  postdata: "ID="+ID+"&lang="+langtag,
 		  headers: {"Content-Type": "application/x-www-form-urlencoded"} 
@@ -768,7 +780,7 @@
 	 	
 		  var BrowseResponse = showtime.httpReq("http://cine.to/request/entry",{
 			  compression: true,
-			  noFollow:true,
+			  noFollow:false,
 			  method: "POST" ,
 			  postdata: "ID="+ID,
 			  headers: {"Content-Type": "application/x-www-form-urlencoded"} 
