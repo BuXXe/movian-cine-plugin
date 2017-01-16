@@ -8,19 +8,3 @@ As this plugin was initially only meant for personal usage, bug fixes and additi
 * Browse - Browse through movies (by genre)
 * Search - Lets you search for a specific movie
 * (due to the limited GUI capabilities of movian, the filters as implemented on the page (rating, year...) are omitted to keep it clean and easy)
-
-# Current hoster-resolution info:
-* Streamcloud - resolver working / video working
-* Vivo - resolver working / video not working (perhaps due to mp4 file format which has also shown bad performance at cloudtime)
-* FlashX - resolver working / video working 
-* Powerwatch - resolver working / video working
-* Cloudtime - resolver working / video working (Mobile mp4 version in code had bad performance)
-* Movshare - resolver working / video working
-* NowVideo - resolver working / video working
-* VideoWeed - resolver working / video working
-* YouWatch -> resolver not working 
-* Novamov -> resolver working / video working
-* Ecostream -> resolver working / video working
-* Shared -> resolver working / video working
-* Filenuke -> resolver working / video not working 
-
