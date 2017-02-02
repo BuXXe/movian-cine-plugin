@@ -30,7 +30,8 @@
   
   // resolves the hoster link and gives the final link to the stream file
   plugin.addURI(PLUGIN_PREFIX + ":EpisodesHandler:(.*):(.*)", function(page,episodeLink, hostername){
-	  	page.type = 'directory';
+		page.metadata.icon = Plugin.path + 'cine.png';
+		page.type = 'directory';
 	  	// get the series title, season and episode number
 		// seasonlink is serie/seriesname/seasonnumber/episodename
 		page.metadata.title = hostername;
@@ -54,6 +55,7 @@
   
   plugin.addURI(PLUGIN_PREFIX + ":MovieStreamSelection:(.*):(.*):(.*):(.*)", function(page,ID,langtag,title,hostername){
 	  page.type = 'directory';
+	  page.metadata.icon = Plugin.path + 'cine.png';
 
 		page.metadata.title = "Links of "+hostername+" for movie " + decodeURIComponent(title);
 
@@ -81,6 +83,7 @@
 
   plugin.addURI(PLUGIN_PREFIX + ":MovieHosters:(.*):(.*):(.*)", function(page,ID,langtag,title){
 	  page.type = 'directory';
+	  page.metadata.icon = Plugin.path + 'cine.png';
 
 	  page.metadata.title = "Hoster selection: "+decodeURIComponent(title); 
 
@@ -114,7 +117,8 @@
   // (separate languages)
   // http://cine.to/request/entry
   plugin.addURI(PLUGIN_PREFIX + ':MovieLanguageSelection:(.*)', function(page, ID) {
-	  	page.loading = false;
+		page.metadata.icon = Plugin.path + 'cine.png';
+		page.loading = false;
 	  	page.type = 'directory';
 	 	
 		  var BrowseResponse = showtime.httpReq("http://cine.to/request/entry",{
@@ -154,7 +158,8 @@
   // differences are made through parameters
   plugin.addURI(PLUGIN_PREFIX+ ":MoviesPaging:(.*):(.*):(.*)", function(page,genre,term,currentpage) {
 	  page.type="directory";
-	  
+	  page.metadata.icon = Plugin.path + 'cine.png';
+
 	  var postterm =  term;
 	  // necessary to include empty search criteria cause otherwise the pattern for this page does not match
 	  if(term==="NoSearchCriteriaEntered")
@@ -241,6 +246,7 @@
   plugin.addURI(PLUGIN_PREFIX+":GenreList", function(page) {
 	  page.type="directory";
 	  page.metadata.title = "Which movie genre you want to browse?";
+	  page.metadata.icon = Plugin.path + 'cine.png';
 
 	  for(var k=0; k < Genres.length; k++)
 	  {
@@ -254,7 +260,8 @@
   // Search param indicates the search criteria
   plugin.addURI(PLUGIN_PREFIX+":Search", function(page) {
 	  page.type="directory";
-  
+	  page.metadata.icon = Plugin.path + 'cine.png';
+
 	  var res = showtime.textDialog("What movies / actors do you want to search for?", true,true);
 	  
 	  // check for user abort
@@ -272,7 +279,8 @@
   
   // Register Start Page
   plugin.addURI(PLUGIN_PREFIX+"start", function(page) {
-    page.type = "directory";
+	page.metadata.icon = Plugin.path + 'cine.png';
+	page.type = "directory";
     page.metadata.title = "cine.to Main Menu";
     page.appendItem(PLUGIN_PREFIX + ':GenreList', 'directory',{title: "Browse (by Genre)"});
     page.appendItem(PLUGIN_PREFIX + ':Search','item',{ title: "Search...", });
