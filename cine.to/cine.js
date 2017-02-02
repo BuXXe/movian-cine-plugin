@@ -106,7 +106,7 @@
 		var resolverstatus = resolvers.check(hostname);
 		var statusmessage = resolverstatus ? " <font color=\"009933\">[Working]</font>":" <font color=\"CC0000\">[Not Working]</font>";
 		
-		var item = page.appendItem(PLUGIN_PREFIX + ':MovieStreamSelection:'+ID+":"+langtag+":"+title+":"+hostname, 'video', { 
+		var item = page.appendItem(PLUGIN_PREFIX + ':MovieStreamSelection:'+ID+":"+langtag+":"+title+":"+hostname, 'directory', { 
 			  title: new showtime.RichText(hostname + " " + statusmessage),
 			});
 	}
